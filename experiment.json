@@ -1,0 +1,12 @@
+{
+  "name": "word_reading_experiment",
+  "version": "1.0.0",
+  "description": "An online word reading experiment using jsPsych.",
+  "type": "module",
+  "main": "experiment.js",
+  "dependencies": {
+    "jspsych": "^8.1.0",
+    "@jspsych/plugin-html-button-response": "^2.0.1",
+    "@jspsych/plugin-instructions": "^2.0.1"
+  }
+}
