@@ -113,7 +113,7 @@ const instructionsTrial = {
                     <span style="color: #ffd700;">Press the <strong>SPACEBAR</strong></span> to move to the next word. <br><br>
                     After reading the full sentence, you will be asked to judge whether the sentence is true or false. <br><br>
                     <strong style="color: #00d1b2;">Press 'F' for Yes</strong> and <strong style="color: #e63946;">Press 'J' for No</strong>. <br><br>
-                    <span style="color: #ffd700; font-weight: bold;">Press SPACEBAR to start practice.</span>
+                    <span style="color: #ffd700; font-weight: bold;">Press SPACEBAR to the next page.</span>
                 </p>
             </div>
         </div>`
@@ -143,9 +143,9 @@ const createSentenceTrials = (sentences) => {
 
         trials.push({
             type: jsPsychHtmlKeyboardResponse,
-            stimulus: `<p style="font-size: 28px; text-align: center;">Is the sentence true?</p>`,
+            stimulus: `<p style="font-size: 28px; text-align: center;">Is this sentence/ question TRUE or FALSE?</p>`,
             choices: ['f', 'j'],
-            prompt: "Press 'F' for Yes or 'J' for No.",
+            prompt: "Press 'F' for TRUE or 'J' for FALSE.",
             data: {
                 sentence_index: sentenceIndex,
                 sentence: sentence,
