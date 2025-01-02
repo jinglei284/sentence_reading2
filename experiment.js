@@ -1,10 +1,13 @@
 // Initialize jsPsych
 const jsPsych = initJsPsych({
     on_finish: () => {
-        // Save the data as a CSV file
-        jsPsych.data.get().localSave('csv', 'participant_data.csv');
-        // Display the data in the console (optional for debugging)
-        console.log(jsPsych.data.get().csv());
+        const csvData = jsPsych.data.get().csv();
+        const blob = new Blob([csvData], { type: "text/csv" });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "participant_data.csv";
+        a.click();
     },
 });
 
@@ -20,6 +23,78 @@ const testSentences = [
     "Baby dogs are called men some of the time",
     "You can see that the sun is square in shape",
     "Bees can make cheese from dry dust",
+    "Fresh eggs are as hard as rocks",
+    "Do lions make very good pets",
+    "We know that there are whales on the moon",
+    "People wear shoes on their hands when they walk about",
+    "Pigs can fly high in the sky",
+    "Sharks tend to fear herds of sheep",
+    "The milk we drink comes from ducks",
+    "Bears like to sit and watch films",
+    "All the swans in the world are black",
+    "A crab has two legs to walk on",
+    "Owls have pink and blue stripes on their head",
+    "We can see five moons at night",
+    "Snakes hear very well because they have long ears",
+    "You can find ants in the clouds",
+    "The stars up above are real bright at lunch time",
+    "Boys use their hands to walk and their feet to eat",
+    "Bees swarm around the fields because they like to eat grass",
+    "Where does the sun rise and set In the north and the east",
+    "To make a house look nice you should use brooms to paint the walls",
+    "Fire trucks are small quiet black vehicles that stop at all stop signs in the road",
+    "Cats can catch mice if they are fast enough",
+    "Rest is very good for your health",
+    "The sun gives us light and heat",
+    "We can get wet in the rain when we have no umbrella",
+    "We need to breathe air in order to live",
+    "Are grapes and pears and plums all fruits",
+    "You can buy food from a shop",
+    "A plane can take you up and down in the air",
+    "We can tell what time of day it is from a watch",
+    "Most dogs and cats walk on four legs",
+    "You can pour water with a jug",
+    "Frogs like to swim in a pond",
+    "Can you drink milk through a straw",
+    "Some people eat pie with a fork",
+    "You do not need gas to ride a bike",
+    "It would never ever snow on the Sun",
+    "At the shop we can buy fruit and meat and cheese",
+    "A full moon looks like a bright round plate",
+    "We can find a lot of books at school",
+    "We need to wear more clothes when it is cold",
+    "A baby may cry when it is hungry",
+    "Do you need wind to fly a kite",
+    "Goats like to eat hay which is dry grass",
+    "We can cross the street when the green light is on",
+    "The earth is a round sphere",
+    "The earth goes round the sun",
+    "You learn how to read and write and add in school",
+    "There is a lot of sand at a beach",
+    "A table and a cow each have four legs",
+    "Just like other sea creatures fish need food to live",
+    "You should stay at home when you are sick",
+    "Many kinds of fish live in the sea",
+    "You should look both ways before you cross a street",
+    "Your hair will grow too long if you do not cut it",
+    "A baby should not try to play with fire",
+    "You need to peel the skin before you eat a kiwi",
+    "When snow falls from the sky it is white and very cold",
+    "A hot day is a good day to swim in the pool",
+    "Cats and dogs and mice all have five legs",
+    "Cooks are the ones who work in the banks",
+    "There are one hundred hours in day",
+    "Can a fish live without water",
+    "A train goes on the road like a car or truck",
+    "Is there much water in the desert",
+    "The bread we eat falls from the trees",
+    "A fox might be chased by mice",
+    "May is the last day of the week",
+    "Can you find a phone number with a map",
+    "People sit on their hands while they eat snacks",
+    "Will your nose grow long if you tell a lie",
+    "A key can be used to comb your hair each day",
+    "Can you drive a car with a flat tire very far",
     "Is it good for your teeth to eat a lot of sweets",
 ];
 
@@ -29,8 +104,8 @@ const shuffledTestSentences = jsPsych.randomization.shuffle(testSentences);
 // Instructions
 const instructionsTrial = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: `
-        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; font-family: Arial, sans-serif; color: #f8f9fa; background-color: #1e1e2f;">
+    stimulus: [
+        `<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; font-family: Arial, sans-serif; color: #f8f9fa; background-color: #1e1e2f;">
             <div style="max-width: 700px; text-align: center; padding: 20px; background-color: #2b3e50; border-radius: 15px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);">
                 <h2 style="color: #00d1b2;">Welcome to the Experiment</h2>
                 <p style="font-size: 18px; line-height: 1.6;">
@@ -41,13 +116,15 @@ const instructionsTrial = {
                     <span style="color: #ffd700; font-weight: bold;">Press SPACEBAR to start practice.</span>
                 </p>
             </div>
-        </div>`,
+        </div>`
+    ],
     choices: [' '],
 };
 
 // Helper function to create trials for each sentence
 const createSentenceTrials = (sentences) => {
     const trials = [];
+
     sentences.forEach((sentence, sentenceIndex) => {
         const words = sentence.split(" ");
         words.forEach((word, wordIndex) => {
