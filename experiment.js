@@ -112,7 +112,7 @@ const instructionsTrial = {
                     In this task, you will read sentences presented <strong>one word at a time</strong>. <br><br>
                     <span style="color: #ffd700;">Press the <strong>SPACEBAR</strong></span> to move to the next word. <br><br>
                     After reading the full sentence, you will be asked to judge whether the sentence is true or false. <br><br>
-                    <strong style="color: #00d1b2;">Press 'F' for Yes</strong> and <strong style="color: #e63946;">Press 'J' for No</strong>. <br><br>
+                    <strong style="color: #00d1b2;">Press 'J' for Yes</strong> and <strong style="color: #e63946;">Press 'F' for No</strong>. <br><br>
                     <span style="color: #ffd700; font-weight: bold;">Press SPACEBAR to the next page.</span>
                 </p>
             </div>
