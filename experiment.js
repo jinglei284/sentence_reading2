@@ -144,8 +144,8 @@ const createSentenceTrials = (sentences) => {
         trials.push({
             type: jsPsychHtmlKeyboardResponse,
             stimulus: `<p style="font-size: 28px; text-align: center;">Is this sentence/ question TRUE or FALSE?</p>`,
-            choices: ['f', 'j'],
-            prompt: "Press 'F' for TRUE or 'J' for FALSE.",
+            choices: ['j', 'f'],
+            prompt: "Press 'J' for TRUE or 'F' for FALSE.",
             data: {
                 sentence_index: sentenceIndex,
                 sentence: sentence,
